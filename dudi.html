@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Sebaran PKL Siswa - Grouped</title>
+    <style>
+        /* --- BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #333;
+            padding-bottom: 1rem;
+        }
+
+        h1 { font-size: 1.8rem; color: #fff; }
+        .subtitle { font-size: 0.9rem; color: #bbb; }
+
+        /* --- TABLE STYLING --- */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            background-color: #1e1e1e;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        thead {
+            background-color: #252526;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        th {
+            text-align: left;
+            padding: 1rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #4da6ff;
+            border-bottom: 2px solid #444;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 0.8rem 1rem;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #333;
+            border-right: 1px solid #333; /* Pemisah vertikal tipis */
+            vertical-align: middle; /* Posisi teks di tengah vertikal */
+        }
+
+        /* Hilangkan border kanan di kolom terakhir */
+        td:last-child { border-right: none; }
+
+        /* Warna selang-seling untuk baris siswa agar mudah dibaca */
+        tbody tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.02); }
+        
+        /* Hover Effect pada baris siswa */
+        tbody tr:hover td { background-color: #2d2d30; transition: 0.2s; }
+
+        /* --- SPECIFIC COLUMN STYLES --- */
+        .col-no { width: 50px; text-align: center; color: #888; }
+        
+        .col-dudi { 
+            font-weight: bold; 
+            color: #fff; 
+            width: 20%; 
+            background-color: #1e1e1e; /* Pastikan background solid saat di-merge */
+        }
+
+        .col-siswa { color: #e0e0e0; font-weight: 500; }
+
+        .col-alamat { 
+            font-size: 0.85rem; 
+            color: #aaa; 
+            width: 25%;
+            background-color: #1e1e1e;
+        }
+
+        .col-pem { 
+            font-style: italic; 
+            color: #888; 
+            font-size: 0.9rem; 
+            width: 20%;
+            background-color: #1e1e1e;
+        }
+
+        /* Garis pemisah antar Kelompok DUDI yang lebih tebal */
+        .group-divider {
+            border-bottom: 2px solid #555 !important;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Data Penempatan DUDI</h1>
+            <span class="subtitle">Tahun Ajaran 2024/2025 - Jurusan DKV (Grouped View)</span>
+        </header>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama DUDI</th>
+                        <th>Nama Siswa</th>
+                        <th>Alamat Industri</th>
+                        <th>Pembimbing</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-no">1</td>
+                        <td class="col-dudi group-divider" rowspan="3">RUMAH MESIN</td>
+                        <td class="col-siswa">Amelia Winda Nurhaliza</td>
+                        <td class="col-alamat group-divider" rowspan="3">Jl. Parangtritis No.Km. 5, Sewon, Bantul</td>
+                        <td class="col-pem group-divider" rowspan="3">Fiani Nur Aji P, S.Pd</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">2</td>
+                        <td class="col-siswa">Rokhan Sidiq</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">3</td>
+                        <td class="col-siswa">Muhammad Nur Afiq</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">4</td>
+                        <td class="col-dudi group-divider" rowspan="3">CONCEPT STUDIO</td>
+                        <td class="col-siswa">Amara Kasih Nur Azizah</td>
+                        <td class="col-alamat group-divider" rowspan="3">Jalan Bugisan No. 46, Wirobrajan</td>
+                        <td class="col-pem group-divider" rowspan="3">Titien Agustina Y, SST.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">5</td>
+                        <td class="col-siswa">Kezya Rayya Noer Azizah</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">6</td>
+                        <td class="col-siswa">Syila Nindita Ryana L</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">7</td>
+                        <td class="col-dudi group-divider" rowspan="4">AJICINEMA STUDIO</td>
+                        <td class="col-siswa">Farah Fadila</td>
+                        <td class="col-alamat group-divider" rowspan="4">Jl. Tebu Ireng No.47 B, Kotagede</td>
+                        <td class="col-pem group-divider" rowspan="4">Andriyani, S.Kom</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">8</td>
+                        <td class="col-siswa">Verina Dwi Aryanti</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">9</td>
+                        <td class="col-siswa">Zahra Lussita Febrianti</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">10</td>
+                        <td class="col-siswa">Zulfika Setia Ningsih</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">11</td>
+                        <td class="col-dudi group-divider" rowspan="4">MAGMA PRO</td>
+                        <td class="col-siswa">Sandi Ahmad Wardhana</td>
+                        <td class="col-alamat group-divider" rowspan="4">Jl. Puri Sewon Indah No.a1, Bantul</td>
+                        <td class="col-pem group-divider" rowspan="4">Andriyani, S.Kom</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">12</td>
+                        <td class="col-siswa">Muhammad Iqbal Azizi</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">13</td>
+                        <td class="col-siswa">Rahmat Gunawan</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">14</td>
+                        <td class="col-siswa">Raihan Adinata</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">15</td>
+                        <td class="col-dudi group-divider" rowspan="2">RADIO 895 JIZ FM</td>
+                        <td class="col-siswa">Ehsanda Maysia Putri</td>
+                        <td class="col-alamat group-divider" rowspan="2">Sanggrahan Ngestiharjo, Kasihan</td>
+                        <td class="col-pem group-divider" rowspan="2">Risa Resti Afriani, S.Pd</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">16</td>
+                        <td class="col-siswa">Fiona Hadnice</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">17</td>
+                        <td class="col-dudi group-divider" rowspan="2">FRAME STUDIO</td>
+                        <td class="col-siswa">Fattoni Rahmad Deni</td>
+                        <td class="col-alamat group-divider" rowspan="2">Sewon, Bantul</td>
+                        <td class="col-pem group-divider" rowspan="2">Titisari, M.Kom</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">18</td>
+                        <td class="col-siswa">Wahyu Agung W</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">19</td>
+                        <td class="col-dudi group-divider" rowspan="3">SEAKSA.STD</td>
+                        <td class="col-siswa">Prisa Melrin E</td>
+                        <td class="col-alamat group-divider" rowspan="3">Jaranan, Sewon, Bantul</td>
+                        <td class="col-pem group-divider" rowspan="3">Andriyani</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">20</td>
+                        <td class="col-siswa">Rindiantika Orvalia A</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">21</td>
+                        <td class="col-siswa">Teddy Nesard Dwi S</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">22</td>
+                        <td class="col-dudi group-divider" rowspan="4">FSMR ISI YK</td>
+                        <td class="col-siswa">Cinta Zesnanda Azahra</td>
+                        <td class="col-alamat group-divider" rowspan="4">Fakultas Seni Media Rekam ISI</td>
+                        <td class="col-pem group-divider" rowspan="3">Titien Agustina Y, SST.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">23</td>
+                        <td class="col-siswa">Michelle Terang Budi S</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">24</td>
+                        <td class="col-siswa">Shalya Anggraeni</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">25</td>
+                        <td class="col-siswa">Alifahzzahra Christine</td>
+                        <td class="col-pem group-divider">Yuli Astuti, S.Pd</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">26</td>
+                        <td class="col-dudi group-divider" rowspan="2">JOGLO PHOTO</td>
+                        <td class="col-siswa">Fathan Qorib</td>
+                        <td class="col-alamat group-divider" rowspan="2">Puton, Trimulyo Jetis Bantul</td>
+                        <td class="col-pem group-divider" rowspan="2">Fiani Nur Aji P, S.Pd</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">27</td>
+                        <td class="col-siswa">Ahmad Fuad Muzaki</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">28</td>
+                        <td class="col-dudi group-divider" rowspan="3">AUDIOVISUAL ID</td>
+                        <td class="col-siswa">Galang Persada</td>
+                        <td class="col-alamat group-divider" rowspan="3">Ruko Glugo Jl RR Selatan</td>
+                        <td class="col-pem group-divider" rowspan="2">Yulita Ekawinajeng, S.Pd</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">29</td>
+                        <td class="col-siswa">Raihan Raditya</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">30</td>
+                        <td class="col-siswa">Afriza Rahmahuda</td>
+                        <td class="col-pem group-divider">Eva Yuni Astuati, S.Pd</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">31</td>
+                        <td class="col-dudi group-divider" rowspan="5">FERYTO PESTA</td>
+                        <td class="col-siswa">Bianto Ari Senno</td>
+                        <td class="col-alamat group-divider" rowspan="5">Jl. KH Ali Maksum 470, Sewon</td>
+                        <td class="col-pem group-divider" rowspan="5">Yuli Astuti, S.Pd</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">32</td>
+                        <td class="col-siswa">Muhammmad Farel A</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">33</td>
+                        <td class="col-siswa">Muhammad Rafi N</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">34</td>
+                        <td class="col-siswa">Muhhammad Iqbal A</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">35</td>
+                        <td class="col-siswa">Nandana Tertia T</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">36</td>
+                        <td class="col-dudi group-divider" rowspan="4">LUNANOVA</td>
+                        <td class="col-siswa">Aufa Abighail Hafidz</td>
+                        <td class="col-alamat group-divider" rowspan="4">Jl. KH Hasyim Asyari, Bantul</td>
+                        <td class="col-pem group-divider" rowspan="4">Hermi Cahyawati, S.Pd.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">37</td>
+                        <td class="col-siswa">Naufal Dylan P.P</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">38</td>
+                        <td class="col-siswa">Rendi Aditya Pratama</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">39</td>
+                        <td class="col-siswa">Fathonah Nabila S</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">40</td>
+                        <td class="col-dudi group-divider" rowspan="3">ADHINATHA</td>
+                        <td class="col-siswa">Marsya Putri Zulfahni</td>
+                        <td class="col-alamat group-divider" rowspan="3">Jl. Parangtritis Km 6,5, Sewon</td>
+                        <td class="col-pem group-divider" rowspan="3">Suradal, SPd</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">41</td>
+                        <td class="col-siswa">Za'ky Ihyar Nur R</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">42</td>
+                        <td class="col-siswa">Rizqi Amalia Putri</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">43</td>
+                        <td class="col-dudi group-divider" rowspan="6">TERAS DAKWAH</td>
+                        <td class="col-siswa">Adira Raisa K</td>
+                        <td class="col-alamat group-divider" rowspan="6">Nitikan UH VI, Umbulharjo</td>
+                        <td class="col-pem group-divider" rowspan="6">Yuli Astuti, S.Pd</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">44</td>
+                        <td class="col-siswa">Arga Saputra</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">45</td>
+                        <td class="col-siswa">Faraz Izzulhak</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">46</td>
+                        <td class="col-siswa">Miftakhul Huda</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">47</td>
+                        <td class="col-siswa">Ikhsan Gesang Abadi</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">48</td>
+                        <td class="col-siswa">Shihab Fatin Alvan</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">49</td>
+                        <td class="col-dudi group-divider" rowspan="4">HARUN JR</td>
+                        <td class="col-siswa">Adinda Nur Hidayah</td>
+                        <td class="col-alamat group-divider" rowspan="4">Kayuhan Wetan, Pajangan</td>
+                        <td class="col-pem group-divider" rowspan="4">Eva Yuni Astuati, S.Pd</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">50</td>
+                        <td class="col-siswa">Ikha Siwi Inayani</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">51</td>
+                        <td class="col-siswa">Nadia Alya P (DKV 4)</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">52</td>
+                        <td class="col-siswa">Rara Ayu C (DKV 5)</td>
+                    </tr>
+
+                    <tr class="group-divider">
+                        <td class="col-no">53</td>
+                        <td class="col-dudi">SLAB DESIGN</td>
+                        <td class="col-siswa">M. Jauza Kemal Yusuf</td>
+                        <td class="col-alamat">Condongcatur, Sleman</td>
+                        <td class="col-pem">Hermi Cahyawati, S.Pd.</td>
+                    </tr>
+
+                    <tr class="group-divider">
+                        <td class="col-no">54</td>
+                        <td class="col-dudi">BANTUL TV</td>
+                        <td class="col-siswa">Rasya Haris Nurfadil</td>
+                        <td class="col-alamat">Kurahan, Bantul</td>
+                        <td class="col-pem">Dra. Sri Sulastri</td>
+                    </tr>
+
+                    <tr class="group-divider">
+                        <td class="col-no">55</td>
+                        <td class="col-dudi">JAYA PRINTING</td>
+                        <td class="col-siswa">Revangga Satrio H</td>
+                        <td class="col-alamat">Umbulharjo, Yogyakarta</td>
+                        <td class="col-pem">Dra. Sri Sulastri</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">56</td>
+                        <td class="col-dudi group-divider" rowspan="2">TVMU</td>
+                        <td class="col-siswa">Andi M. Razzan</td>
+                        <td class="col-alamat group-divider" rowspan="2">Umbulharjo, Yogyakarta</td>
+                        <td class="col-pem group-divider" rowspan="2">Fiani Nur Aji P, S.Pd</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">57</td>
+                        <td class="col-siswa">M. Haris Romadhoni</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">58</td>
+                        <td class="col-dudi group-divider" rowspan="2">TITIK FOCUS</td>
+                        <td class="col-siswa">Narasresta Ndaru N</td>
+                        <td class="col-alamat group-divider" rowspan="2">Jl Remaja Raya, Jakarta/Yogya</td>
+                        <td class="col-pem group-divider" rowspan="2">Yuli Astuti / Andriyani</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">59</td>
+                        <td class="col-siswa">Rizki Zuhdi Naufal</td>
+                    </tr>
+
+                    <tr class="group-divider">
+                        <td class="col-no">60</td>
+                        <td class="col-dudi">VASCO PHOTO</td>
+                        <td class="col-siswa">Akule Inas Savero</td>
+                        <td class="col-alamat">Jl. Timoho No.132, Yogyakarta</td>
+                        <td class="col-pem">Eva Yuni Astuati, S.Pd</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">61</td>
+                        <td class="col-dudi group-divider" rowspan="2">HATA STUDIO</td>
+                        <td class="col-siswa">Frisa Aulia R</td>
+                        <td class="col-alamat group-divider" rowspan="2">Potorono, Banguntapan</td>
+                        <td class="col-pem group-divider" rowspan="2">Dwi Lesmiyati, S.Pd</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">62</td>
+                        <td class="col-siswa">Dhestin Putri E</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">63</td>
+                        <td class="col-dudi group-divider" rowspan="4">DOTS KONVEKSI</td>
+                        <td class="col-siswa">Azis Danuarto</td>
+                        <td class="col-alamat group-divider" rowspan="4">Godean, Sleman</td>
+                        <td class="col-pem group-divider" rowspan="4">Titisari, M.Kom</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">64</td>
+                        <td class="col-siswa">Fajar Nur Hidayat</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">65</td>
+                        <td class="col-siswa">M. Ivan Ardianto</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">66</td>
+                        <td class="col-siswa">M. Reza Adi N</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">67</td>
+                        <td class="col-dudi group-divider" rowspan="3">JOGJA COTTON</td>
+                        <td class="col-siswa">Bagus Jalu Pinilih</td>
+                        <td class="col-alamat group-divider" rowspan="3">Mantrijeron, Yogyakarta</td>
+                        <td class="col-pem group-divider" rowspan="3">Dwi Lesmiyati, S.Pd</td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">68</td>
+                        <td class="col-siswa">Gilang Satria P</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">69</td>
+                        <td class="col-siswa">Desta Casey P</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-no">70</td>
+                        <td class="col-dudi group-divider" rowspan="2">MABES BALKER</td>
+                        <td class="col-siswa">M. Apriludin</td>
+                        <td class="col-alamat group-divider" rowspan="2">Pandak, Bantul</td>
+                        <td class="col-pem group-divider" rowspan="2">Titisari, M.Kom</td>
+                    </tr>
+                    <tr class="group-divider">
+                        <td class="col-no">71</td>
+                        <td class="col-siswa">Zidan Rahmat Al A</td>
+                    </tr>
+
+                    <tr class="group-divider">
+                        <td class="col-no">72</td>
+                        <td class="col-dudi">IT SOLUTION</td>
+                        <td class="col-siswa">Faishal Hanun H</td>
+                        <td class="col-alamat">Trimulyo, Sleman</td>
+                        <td class="col-pem">Yulita Ekawinajeng, S.Pd</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
